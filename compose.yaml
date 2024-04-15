@@ -1,10 +1,37 @@
+version: '1'
+
 services:
   mysql:
     image: 'mysql:latest'
+    restart: always
     environment:
-      - 'MYSQL_DATABASE=mydatabase'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
+      MYSQL_DATABASE: 'car_rental_db'
+      MYSQL_PASSWORD: 'carrental'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_USER: 'car_rental'
     ports:
-      - '3306'
+      - '3307:3306'
+    networks:
+      - app-network
+    volumes:
+      - db-data:/var/lib/mysql
+
+  spring-boot-app:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/car_rental_db
+      SPRING_DATASOURCE_USERNAME: car_rental
+      SPRING_DATASOURCE_PASSWORD: carrental
+    networks:
+      - app-network
+
+volumes:
+  db-data:
+networks:
+  app-network:
+    driver: bridge
