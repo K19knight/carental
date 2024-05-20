@@ -40,7 +40,7 @@ deploy:
     - docker:dind
   script:
     - echo "Deploying Docker containers with docker-compose..."
-    - docker-compose -f docker-compose.yml up -d
+    - docker-compose -f compose.yml up -d
   only:
     - main
 
