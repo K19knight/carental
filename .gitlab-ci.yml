@@ -31,9 +31,12 @@ test:
     MYSQL_PASSWORD: 'carrental'
     MYSQL_ROOT_PASSWORD: 'root'
     MYSQL_USER: 'car_rental'
-  script:
+  before_script:
     - echo "Waiting for MySQL to be ready..."
+    - apt-get update && apt-get install -y mysql-client
     - until mysql -hmysql -ucar_rental -pcarrental -e "show databases;" 2>/dev/null; do echo "Waiting..."; sleep 1; done
+  script:
+    - echo "MySQL is ready."
     - echo "Running mvn tests..."
     - mvn test
   artifacts:
