@@ -23,7 +23,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Bean
-    public JwtAthFilter getJwtAthFilter(){
+    public JwtAthFilter getJwtAthFilter() {
         return new JwtAthFilter();
     }
 
@@ -65,7 +65,8 @@ public class SecurityConfig {
                 })
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(this.getJwtAthFilter(), UsernamePasswordAuthenticationFilter.class)
-                .csrf(AbstractHttpConfigurer::disable);;
+                .csrf(AbstractHttpConfigurer::disable);
+        ;
 
         return http.build();
     }
