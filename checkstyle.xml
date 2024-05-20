@@ -13,20 +13,6 @@
         <property name="fileNamePattern" value="module\-info\.java$"/>
     </module>
 
-
-    <module name="TreeWalker">
-        <!-- Wyłączanie sprawdzania Javadoc -->
-        <module name="JavadocType">
-            <property name="scope" value=""/>
-        </module>
-        <module name="JavadocMethod">
-            <property name="scope" value=""/>
-        </module>
-        <module name="JavadocVariable">
-            <property name="scope" value=""/>
-        </module>
-    </module>
-
     <!-- Checks for whitespace -->
     <module name="FileTabCharacter">
         <property name="eachLine" value="true"/>
