@@ -19,26 +19,26 @@ public class MarkController {
     private MarkService markService;
 
     @GetMapping
-    public ResponseEntity<List<Mark>> getAllMarks(){
+    public ResponseEntity<List<Mark>> getAllMarks() {
         List<Mark> marks = markService.getAllMarks();
         return ResponseEntity.ok(marks);
     }
 
     @GetMapping("/{markId}")
-    public ResponseEntity<Optional<Mark>> getUserByID(@PathVariable Integer markId){
+    public ResponseEntity<Optional<Mark>> getUserByID(@PathVariable Integer markId) {
         Optional<Mark> mark = markService.getMarkByID(markId);
         return ResponseEntity.ok(mark);
     }
 
     @PostMapping
-    public ResponseEntity<Mark> createUser(@RequestBody MarkDto newMark){
+    public ResponseEntity<Mark> createUser(@RequestBody MarkDto newMark) {
         Mark mark = markService.createMark(newMark);
         return new ResponseEntity<>(mark, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{markId}")
     @ResponseBody
-    public boolean deleteUserByID(@PathVariable Integer markId){
+    public boolean deleteUserByID(@PathVariable Integer markId) {
         return markService.deleteMark(markId);
     }
 

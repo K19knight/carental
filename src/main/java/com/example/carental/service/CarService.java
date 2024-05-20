@@ -18,7 +18,7 @@ public class CarService {
     @Autowired
     private MarkService markService;
 
-    public List<Car> getAllCars(){
+    public List<Car> getAllCars() {
         return carRepository.findAll();
     }
 
@@ -27,7 +27,7 @@ public class CarService {
         return carRepository.findById(carId);
     }
 
-    public Car createCar(CarDto carDto){
+    public Car createCar(CarDto carDto) {
         Car car = Car.builder()
                 .mark(markService.getMarkByName(carDto.getMark()))
                 .year(carDto.getYear())
@@ -38,8 +38,8 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    public boolean deleteCar(Integer id){
-        if(carRepository.findById(id).isPresent()){
+    public boolean deleteCar(Integer id) {
+        if (carRepository.findById(id).isPresent()) {
             carRepository.deleteById(id);
             return true;
         }

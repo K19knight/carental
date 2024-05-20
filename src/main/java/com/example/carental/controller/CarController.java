@@ -18,25 +18,26 @@ public class CarController {
     private CarService carService;
 
     @GetMapping
-    public ResponseEntity<List<Car>> getAllCars(){
+    public ResponseEntity<List<Car>> getAllCars() {
         List<Car> cars = carService.getAllCars();
         return ResponseEntity.ok(cars);
     }
 
     @GetMapping("/{carId}")
-    public ResponseEntity<Optional<Car>> getUserByID(@PathVariable Integer carId){
+    public ResponseEntity<Optional<Car>> getUserByID(@PathVariable Integer carId) {
         Optional<Car> car = carService.getCarByID(carId);
         return ResponseEntity.ok(car);
     }
 
     @PostMapping()
-    public ResponseEntity<Car> createCar(@RequestBody CarDto newCar){
+    public ResponseEntity<Car> createCar(@RequestBody CarDto newCar) {
         Car car = carService.createCar(newCar);
         return ResponseEntity.ok(car);
     }
+
     @DeleteMapping("/{carId}")
     @ResponseBody
-    public boolean deleteUserByID(@PathVariable Integer carId){
+    public boolean deleteUserByID(@PathVariable Integer carId) {
         return carService.deleteCar(carId);
     }
 

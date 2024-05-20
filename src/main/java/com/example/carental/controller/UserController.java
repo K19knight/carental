@@ -19,20 +19,20 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(){
+    public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<Optional<User>> getUserByID(@PathVariable Integer userId){
+    public ResponseEntity<Optional<User>> getUserByID(@PathVariable Integer userId) {
         Optional<User> user = userService.getUserByID(userId);
         return ResponseEntity.ok(user);
     }
 
     @DeleteMapping("/{userId}")
     @ResponseBody
-    public boolean deleteUserByID(@PathVariable Integer userId){
+    public boolean deleteUserByID(@PathVariable Integer userId) {
         return userService.deleteUser(userId);
     }
 

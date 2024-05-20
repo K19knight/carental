@@ -37,8 +37,8 @@ public class MarkService {
         return mark;
     }
 
-    public boolean deleteMark(Integer id){
-        if(markRepository.findById(id).isPresent()){
+    public boolean deleteMark(Integer id) {
+        if (markRepository.findById(id).isPresent()) {
             markRepository.deleteById(id);
             return true;
         }
