@@ -6,6 +6,9 @@ stages:
 
 variables:
   DOCKER_DRIVER: overlay2
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/car_rental_db
+  SPRING_DATASOURCE_USERNAME: car_rental
+  SPRING_DATASOURCE_PASSWORD: carrental
 
 before_script:
   - echo "Starting CI/CD Pipeline"
@@ -29,11 +32,16 @@ test:
     MYSQL_ROOT_PASSWORD: 'root'
     MYSQL_USER: 'car_rental'
   script:
+    - echo "Waiting for MySQL to be ready..."
+    - until mysql -hmysql -ucar_rental -pcarrental -e "show databases;" 2>/dev/null; do echo "Waiting..."; sleep 1; done
     - echo "Running mvn tests..."
     - mvn test
   artifacts:
+    when: always
     paths:
       - target/surefire-reports/
+    reports:
+      junit: target/surefire-reports/*.xml
 
 build:
   stage: build
