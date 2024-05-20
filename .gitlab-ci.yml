@@ -15,7 +15,7 @@ code_quality:
   image: maven:3.8.4-openjdk-17
   script:
     - echo "Running mvn checkstyle for code quality..."
-    - mvn checkstyle:check
+    - mvn checkstyle:check -Dcheckstyle.config.location=checkstyle.xml
 
 test:
   stage: test

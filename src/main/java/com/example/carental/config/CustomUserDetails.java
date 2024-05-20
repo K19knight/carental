@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
+@Getter
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {
 
     @Setter
-    @Getter
     private User user;
 
     @Override
