@@ -1,0 +1,58 @@
+stages:
+  - code_quality
+  - test
+  - build
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+
+before_script:
+  - echo "Starting CI/CD Pipeline"
+
+code_quality:
+  stage: code_quality
+  image: maven:3.8.4-openjdk-17
+  script:
+    - echo "Running mvn checkstyle for code quality..."
+    - mvn checkstyle:check
+
+test:
+  stage: test
+  image: maven:3.8.4-openjdk-17
+  services:
+    - name: mysql:latest
+      alias: mysql
+  variables:
+    MYSQL_DATABASE: 'car_rental_db'
+    MYSQL_PASSWORD: 'carrental'
+    MYSQL_ROOT_PASSWORD: 'root'
+    MYSQL_USER: 'car_rental'
+  script:
+    - echo "Running mvn tests..."
+    - mvn test
+  artifacts:
+    paths:
+      - target/surefire-reports/
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - echo "Building Docker image..."
+    - docker build -t myrepo/carental:latest .
+  only:
+    - main
+
+deploy:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - echo "Deploying Docker containers with docker-compose..."
+    - docker-compose -f docker-compose.yml up -d
+  only:
+    - main
