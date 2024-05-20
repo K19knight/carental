@@ -1,8 +1,8 @@
 stages:
   - code_quality
-  - test
   - build
   - deploy
+  - test
 
 variables:
   DOCKER_DRIVER: overlay2
@@ -19,6 +19,31 @@ code_quality:
   script:
     - echo "Running mvn checkstyle for code quality..."
     - mvn checkstyle:check -Dcheckstyle.config.location=checkstyle.xml
+
+
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - echo "Building Docker image..."
+    - docker build -t myrepo/carental:latest .
+  only:
+    - main
+
+deploy:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - echo "Deploying Docker containers with docker-compose..."
+    - docker-compose -f docker-compose.yml up -d
+  only:
+    - main
+
 
 test:
   stage: test
@@ -45,25 +70,3 @@ test:
       - target/surefire-reports/
     reports:
       junit: target/surefire-reports/*.xml
-
-build:
-  stage: build
-  image: docker:latest
-  services:
-    - docker:dind
-  script:
-    - echo "Building Docker image..."
-    - docker build -t myrepo/carental:latest .
-  only:
-    - main
-
-deploy:
-  stage: deploy
-  image: docker:latest
-  services:
-    - docker:dind
-  script:
-    - echo "Deploying Docker containers with docker-compose..."
-    - docker-compose -f docker-compose.yml up -d
-  only:
-    - main
