@@ -29,7 +29,7 @@ public class Car {
     private String model;
 
     @Column(nullable = false)
-    private LocalDate year;
+    private Integer year;
 
     @Column(nullable = false)
     private Double engine;

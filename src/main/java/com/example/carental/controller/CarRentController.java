@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "rent")
+@RequestMapping(path = "api/rent")
 public class CarRentController {
 
     @Autowired

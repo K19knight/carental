@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "mark")
+@RequestMapping(path = "api/mark")
 public class MarkController {
 
     @Autowired

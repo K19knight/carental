@@ -15,7 +15,7 @@ public class CarDto {
 
     private String mark;
     private String model;
-    private LocalDate year;
+    private Integer year;
     private Double engine;
     private String fuelType;
     private Double dayPrice;

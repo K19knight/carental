@@ -30,6 +30,7 @@ public class CarService {
     public Car createCar(CarDto carDto) {
         Car car = Car.builder()
                 .mark(markService.getMarkByName(carDto.getMark()))
+                .model(carDto.getModel())
                 .year(carDto.getYear())
                 .engine(carDto.getEngine())
                 .dayPrice(carDto.getDayPrice())
