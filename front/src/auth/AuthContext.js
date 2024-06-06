@@ -17,6 +17,8 @@ const AuthProvider = ({children}) => {
             const response = await axios.post('/auth/login', request);
             const authRes = new AuthRes(response.data.token, response.data.user);
 
+
+
             setAuthRes(authRes);
             localStorage.setItem('authRes', JSON.stringify(authRes));
 

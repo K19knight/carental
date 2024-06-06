@@ -12,6 +12,8 @@ import LoggedIn from "./components/routes/LoggedIn";
 import IsAdmin from "./components/routes/IsAdmin";
 import AddCar from "./pages/AddCar";
 import Cars from "./pages/Cars";
+import RentCar from "./pages/RentCar";
+import MyRents from "./pages/MyRents";
 
 function App() {
     let routes = (
@@ -25,7 +27,8 @@ function App() {
 
 
             <Route element={<LoggedIn/>}>
-                {/*<Route path='/rent' element={<Home/>}/>*/}
+                <Route path='/rent-car/:carId' element={<RentCar/>}/>
+                <Route path='/my-rents' element={<MyRents/>}/>
                 <Route element={<IsAdmin/>}>
                     <Route path='/add-car' element={<AddCar/>}/>
                 </Route>
