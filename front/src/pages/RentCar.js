@@ -3,7 +3,6 @@ import {useParams} from "react-router-dom";
 import axios from '../config/axiosConfig';
 import Car from "../components/Car";
 import {useAuth} from "../auth/AuthContext";
-import  { Redirect } from 'react-router-dom'
 
 const RentCar = () => {
     const {carId} = useParams();
