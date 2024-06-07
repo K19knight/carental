@@ -20,7 +20,7 @@ public class CarRentController {
     private CarRentService carRentService;
 
     @PostMapping
-    public ResponseEntity<CarRent> rentCar(@RequestBody CarRentDto dto){
+    public ResponseEntity<CarRent> rentCar(@RequestBody CarRentDto dto) {
         CarRent carRent = carRentService.rentCar(dto);
         return ResponseEntity.ok(carRent);
     }

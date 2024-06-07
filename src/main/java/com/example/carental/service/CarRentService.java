@@ -30,16 +30,16 @@ public class CarRentService {
         Optional<User> user = userService.getUserByID(dto.getCustomerId());
         CarRent carRent = null;
 
-        if(car.isPresent() && user.isPresent()){
+        if (car.isPresent() && user.isPresent()) {
             Car car1 = car.get();
             User user1 = user.get();
             carRent = CarRent.builder()
-                .car(car1)
-                .customer(user1)
-                .price(dto.getPrice())
-                .term(dto.getTerm())
-                .rentDate(dto.getRentDate())
-                .build();
+                    .car(car1)
+                    .customer(user1)
+                    .price(dto.getPrice())
+                    .term(dto.getTerm())
+                    .rentDate(dto.getRentDate())
+                    .build();
 
         }
         return carRentRepository.save(carRent);
