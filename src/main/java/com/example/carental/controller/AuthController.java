@@ -27,7 +27,8 @@ public class AuthController {
         try {
             AuthenticationResponse response = authService.register(request);
             return ResponseEntity.ok(response);
-        } catch (ResponseStatusException ex) {
+        }
+        catch (ResponseStatusException ex) {
             return ResponseEntity.status(ex.getStatusCode()).build();
         }
     }
