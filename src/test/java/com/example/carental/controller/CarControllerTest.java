@@ -38,7 +38,7 @@ public class CarControllerTest {
     @Test
     @WithMockUser(username = "user", roles = "USER")
     public void testGetAllCars() throws Exception {
-        mockMvc.perform(get("/car")
+        mockMvc.perform(get("/api/car")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -46,7 +46,7 @@ public class CarControllerTest {
     @Test
     @WithMockUser(username = "user", roles = "USER")
     public void testGetCarByID() throws Exception {
-        mockMvc.perform(get("/car/1")
+        mockMvc.perform(get("/api/car/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -54,7 +54,7 @@ public class CarControllerTest {
     @Test
     @WithMockUser(username = "user", roles = "USER")
     public void testCreateCar() throws Exception {
-        mockMvc.perform(post("/car")
+        mockMvc.perform(post("/api/car")
                         .content("{}")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -63,7 +63,7 @@ public class CarControllerTest {
     @Test
     @WithMockUser(username = "user", roles = "USER")
     public void testDeleteCar() throws Exception {
-        mockMvc.perform(delete("/car/1")
+        mockMvc.perform(delete("/api/car/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }

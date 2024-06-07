@@ -45,7 +45,7 @@ public class MarkControllerTest {
     @WithMockUser(username = "user", roles = "USER")
     public void testGetAllMarks() throws Exception {
         // Checks if status code is 200
-        mockMvc.perform(MockMvcRequestBuilders.get("/mark")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/mark")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
         assertNotNull(markService.getAllMarks());
@@ -56,7 +56,7 @@ public class MarkControllerTest {
     @WithMockUser(username = "user", roles = "USER")
     public void testGetMarkByID() throws Exception {
         // Checks if status code is 200
-        mockMvc.perform(MockMvcRequestBuilders.get("/mark/1")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/mark/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
         assertNotNull(markService.getMarkByID(1));
@@ -67,7 +67,7 @@ public class MarkControllerTest {
     @WithMockUser(username = "user", roles = "USER")
     public void testCreateMark() throws Exception {
         // Checks if status code is 201
-        mockMvc.perform(MockMvcRequestBuilders.post("/mark")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/mark")
                         .content("{}")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
@@ -77,7 +77,7 @@ public class MarkControllerTest {
     @WithMockUser(username = "user", roles = "USER")
     public void testDeleteMark() throws Exception {
         // Checks if status code is 200
-        mockMvc.perform(MockMvcRequestBuilders.delete("/mark/1")
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/mark/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }

@@ -37,7 +37,7 @@ public class UserControllerTest {
     @Test
     @WithMockUser(username = "user", roles = "USER")
     public void testGetAllUsers() throws Exception {
-        mockMvc.perform(get("/user")
+        mockMvc.perform(get("/api/user")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -45,7 +45,7 @@ public class UserControllerTest {
     @Test
     @WithMockUser(username = "user", roles = "USER")
     public void testGetUserByID() throws Exception {
-        mockMvc.perform(get("/user/1")
+        mockMvc.perform(get("/api/user/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -53,7 +53,7 @@ public class UserControllerTest {
     @Test
     @WithMockUser(username = "user", roles = "USER")
     public void testDeleteUser() throws Exception {
-        mockMvc.perform(delete("/user/1")
+        mockMvc.perform(delete("/api/user/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
